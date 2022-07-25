@@ -1,0 +1,23 @@
+<h1>Employee's Show Page</h1>
+
+Name: <%= @employees.name %><br>
+Department: <%= @employees.department.name %><br>
+
+<% @employees.tickets.ordered_by_age.each do |ticket| %>
+   Ticket: <%= ticket.subject %> Age: <%= ticket.age %><br>
+<% end %>
+
+<% if @employees.tickets.present? %>
+   Oldest Ticket: <%= @employees.tickets.oldest.subject %><br>
+<% end %>
+
+<h3>Create New Ticket</h3>
+   <% form_with url: "/employees/#{@employee.id}", method: :post, local: true do |form| %>
+      <%= f.label :subject %>
+      <%= f.text_field :subject %>
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+      <%= f.submit "Submit" %>
+   <% end %>
+   
+
